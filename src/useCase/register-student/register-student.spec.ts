@@ -5,10 +5,16 @@ const feature = loadFeature(path.join(__dirname, './create-student.feature'));
 
 defineFeature(feature, (test) => {
   test('Successfully register a student', ({ given, when, then }) => {
-    given('a student is not registered yet', () => {});
+    given('a student is not registered yet', () => {
+        const registerUserUseCase = new RegisterUser();
+    });
 
-    when('the student is trying to get registered', () => {});
+    when('the student is trying to get registered', () => {
 
-    then('the student should be successfully registered', () => {});
+    });
+
+    then('the student should be successfully registered', () => {
+
+    });
   });
 });
