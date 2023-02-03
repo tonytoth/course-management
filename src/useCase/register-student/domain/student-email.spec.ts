@@ -18,22 +18,22 @@ describe('student email', () => {
   });
 
   it('should be able to tell us that empty string is not a valid email', () => {
-    expect(StudentEmail.validate('')).toBeFalsy();
+    expect(StudentEmail.create('')).toBeFalsy();
   });
 
   it('should be able to tell us that a@a.a is not a valid email', () => {
-    expect(StudentEmail.validate('a@a.a')).toBeFalsy();
+    expect(StudentEmail.create('a@a.a')).toBeFalsy();
   });
 
   it('should be able to tell us that aa@aa.aa is not a valid email', () => {
-    expect(StudentEmail.validate('aa@aa.aa')).toBeFalsy();
+    expect(StudentEmail.create('aa@aa.aa')).toBeFalsy();
   });
 
   it('should be able to tell us that sadas@aa.com is not a valid email', () => {
-    expect(StudentEmail.validate('sadas@aa.com')).toBeFalsy();
+    expect(StudentEmail.create('sadas@aa.com')).toBeFalsy();
   });
 
   it('should be able to tell us that asd@asd.a is not a valid email', () => {
-    expect(StudentEmail.validate('asd@asd.a')).toBeFalsy();
+    expect(StudentEmail.create('asd@asd.a')).toBeFalsy();
   });
 });

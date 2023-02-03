@@ -8,7 +8,7 @@ export class StudentEmail implements StudentEmailI {
     this.email = email;
   }
 
-  public static validate(email: string) {
+  isValid(email: string) {
     const emailSplittedByAnchor = email.split('@');
     const userNameFromEmail = emailSplittedByAnchor[0];
     const domainAndTopLevelDomainFromEmail = emailSplittedByAnchor[1];
@@ -40,6 +40,9 @@ export class StudentEmail implements StudentEmailI {
   }
 
   public static create(email: string) {
+    if (!this.isValid(email)) {
+      return false;
+    }
     return new StudentEmail(email);
   }
 }
