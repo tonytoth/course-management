@@ -25,7 +25,11 @@ defineFeature(feature, (test) => {
     });
 
     then('the student should be successfully registered', () => {
-      expect(response).toBe(true);
+      expect(response).toBe({
+        email: 'tony@email.com',
+        firstName: 'Tony',
+        lastName: 'Toth',
+      });
     });
   });
 });
