@@ -7,14 +7,18 @@ interface StudentInput {
 class RegisterStudent {
   constructor() {}
 
-  async execute(input: StudentInput) {
+  async execute(input: Partial<StudentInput>) {
     if (input.email === '') {
       return {
         data: null,
         errors: [{ message: 'Invalid email address' }],
       };
     }
-    return input;
+
+    return {
+      data: input,
+      errors: [],
+    };
   }
 }
 

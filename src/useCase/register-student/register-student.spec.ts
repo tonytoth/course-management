@@ -32,9 +32,12 @@ defineFeature(feature, (test) => {
 
     then('the student should be successfully registered', () => {
       expect(response).toEqual({
-        email: 'tony@email.com',
-        firstName: 'Tony',
-        lastName: 'Toth',
+        data: {
+          email: 'tony@email.com',
+          firstName: 'Tony',
+          lastName: 'Toth',
+        },
+        errors: [],
       });
     });
   });
