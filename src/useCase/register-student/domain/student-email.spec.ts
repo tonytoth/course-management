@@ -5,12 +5,16 @@ describe('student email', () => {
     expect(StudentEmail).toBeDefined();
   });
 
-  it('should have a validation method', () => {
-    expect(StudentEmail.validate).toBeDefined();
+  it('should have a creation method', () => {
+    expect(StudentEmail.create).toBeDefined();
   });
 
-  it('should be able to tell us that tony@toth.com is an valid email', () => {
-    expect(StudentEmail.validate('tony@toth.com')).toBeTruthy();
+  it('creation method should accept email as parameter', () => {
+    expect(StudentEmail.create('hello@hello@hello')).toBeDefined();
+  });
+
+  it('should be able to tell us that tony@toth.com is a valid email', () => {
+    expect(StudentEmail.create('tony@toth.com')).toBeInstanceOf(StudentEmail);
   });
 
   it('should be able to tell us that empty string is not a valid email', () => {

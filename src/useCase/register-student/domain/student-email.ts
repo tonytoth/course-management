@@ -1,8 +1,17 @@
-export class StudentEmail {
+interface StudentEmailI {
+  email: string;
+}
+export class StudentEmail implements StudentEmailI {
+  email: string;
+
+  private constructor(email: string) {
+    this.email = email;
+  }
+
   public static validate(email: string) {
-    const splitByAnchor = email.split('@');
-    const userNameFromEmail = splitByAnchor[0];
-    const domainAndTopLevelDomainFromEmail = splitByAnchor[1];
+    const emailSplittedByAnchor = email.split('@');
+    const userNameFromEmail = emailSplittedByAnchor[0];
+    const domainAndTopLevelDomainFromEmail = emailSplittedByAnchor[1];
 
     if (!domainAndTopLevelDomainFromEmail) {
       return false;
@@ -28,5 +37,9 @@ export class StudentEmail {
     }
 
     return true;
+  }
+
+  public static create(email: string) {
+    return new StudentEmail(email);
   }
 }
