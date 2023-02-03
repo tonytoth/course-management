@@ -8,6 +8,7 @@ const feature = loadFeature(path.join(__dirname, './register-student.feature'));
 defineFeature(feature, (test) => {
   test('Successfully register a student', ({ given, when, then }) => {
     let registerStudentUseCase: RegisterStudent;
+    let response: unknown;
 
     given('a student is not registered yet', () => {
       registerStudentUseCase = new RegisterStudent();
@@ -19,9 +20,12 @@ defineFeature(feature, (test) => {
         firstName: 'Tony',
         lastName: 'Toth',
       };
-      registerStudentUseCase.execute(studentInput);
+
+      response = registerStudentUseCase.execute(studentInput);
     });
 
-    then('the student should be successfully registered', () => {});
+    then('the student should be successfully registered', () => {
+      expect(response).toBe(true);
+    });
   });
 });
