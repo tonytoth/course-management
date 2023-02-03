@@ -25,7 +25,7 @@ defineFeature(feature, (test) => {
     });
 
     then('the student should be successfully registered', () => {
-      expect(response).toBe({
+      expect(response).toEqual({
         email: 'tony@email.com',
         firstName: 'Tony',
         lastName: 'Toth',
