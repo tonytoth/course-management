@@ -1,9 +1,9 @@
 class RegisterStudent {
-    constructor() {
+  constructor() {}
 
-    }
-
-  async execute(input: {}) {}
+  async execute(input: {}) {
+    return true;
+  }
 }
 
 export { RegisterStudent };

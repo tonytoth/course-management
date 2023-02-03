@@ -14,14 +14,14 @@ defineFeature(feature, (test) => {
       registerStudentUseCase = new RegisterStudent();
     });
 
-    when('the student is trying to get registered', () => {
+    when('the student is trying to get registered', async () => {
       const studentInput = {
         email: 'tony@email.com',
         firstName: 'Tony',
         lastName: 'Toth',
       };
 
-      response = registerStudentUseCase.execute(studentInput);
+      response = await registerStudentUseCase.execute(studentInput);
     });
 
     then('the student should be successfully registered', () => {
