@@ -1,8 +1,13 @@
 interface StudentEmailI {
   email: string;
+  getValue: () => string;
 }
 export class StudentEmail implements StudentEmailI {
   email: string;
+
+  public getValue(): string {
+    return this.email;
+  }
 
   private constructor(email: string) {
     this.email = email;
@@ -39,7 +44,7 @@ export class StudentEmail implements StudentEmailI {
     return true;
   }
 
-  public static create(email: string) {
+  public static create(email: string): StudentEmail | false {
     if (!StudentEmail.isValid(email)) {
       return false;
     }

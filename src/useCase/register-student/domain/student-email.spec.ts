@@ -17,7 +17,9 @@ describe('student email', () => {
     const studentEmail = StudentEmail.create('tony@toth.com');
 
     expect(studentEmail).toBeInstanceOf(StudentEmail);
-    expect(studentEmail.getValue()).toBe('tony@toth.com');
+
+    const emailValue = studentEmail && studentEmail.getValue();
+    expect(emailValue).toBe('tony@toth.com');
   });
 
   it('should be able to tell us that empty string is not a valid email', () => {
@@ -38,5 +40,14 @@ describe('student email', () => {
 
   it('should be able to tell us that asd@asd.a is not a valid email', () => {
     expect(StudentEmail.create('asd@asd.a')).toBeFalsy();
+  });
+
+  it('should be able to tell us that tony@worl.com is a valid email', () => {
+    const studentEmail = StudentEmail.create('tony@worl.com');
+
+    expect(studentEmail).toBeInstanceOf(StudentEmail);
+
+    const emailValue = studentEmail && studentEmail.getValue();
+    expect(emailValue).toBe('tony@worl.com');
   });
 });
