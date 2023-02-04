@@ -1,4 +1,6 @@
+import { Result } from './domain/result';
 import { StudentEmail } from './domain/student-email';
+import { StudentFirstName } from './domain/student-first-name';
 
 interface StudentInput {
   email: string;
@@ -13,23 +15,16 @@ class RegisterStudent {
     const studentEmail = StudentEmail.create(input.email || '');
 
     if (!studentEmail) {
-      return {
-        data: null,
-        errors: [{ message: 'Invalid email address' }],
-      };
+      return Result.isNotFine('Invalid email address');
     }
 
-    if (input.firstName === '') {
-      return {
-        data: null,
-        errors: [{ message: 'Invalid firstName' }],
-      };
+    const studentFirstName = StudentFirstName.create(input.firstName || '');
+
+    if (studentFirstName.errors.length > 0) {
+      return Result.isNotFine('Invalid firstName');
     }
 
-    return {
-      data: input,
-      errors: [],
-    };
+    return Result.isFine(input);
   }
 }
 
