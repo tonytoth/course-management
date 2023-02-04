@@ -19,6 +19,13 @@ class RegisterStudent {
       };
     }
 
+    if (input.firstName === '') {
+      return {
+        data: null,
+        errors: [{ message: 'Invalid firstName' }],
+      };
+    }
+
     return {
       data: input,
       errors: [],
