@@ -8,7 +8,7 @@ export class StudentEmail implements StudentEmailI {
     this.email = email;
   }
 
-  isValid(email: string) {
+  static isValid(email: string) {
     const emailSplittedByAnchor = email.split('@');
     const userNameFromEmail = emailSplittedByAnchor[0];
     const domainAndTopLevelDomainFromEmail = emailSplittedByAnchor[1];
@@ -32,7 +32,7 @@ export class StudentEmail implements StudentEmailI {
 
     const topLevelDomain = arrayWithDomainAndTopLevelDomain[1];
 
-    if (topLevelDomain.length < 2) {
+    if (!topLevelDomain || topLevelDomain.length < 2) {
       return false;
     }
 
@@ -40,7 +40,7 @@ export class StudentEmail implements StudentEmailI {
   }
 
   public static create(email: string) {
-    if (!this.isValid(email)) {
+    if (!StudentEmail.isValid(email)) {
       return false;
     }
     return new StudentEmail(email);
