@@ -10,7 +10,9 @@ describe('student entity', () => {
   });
 
   it('should have a create method which accepts an object as parameters', () => {
-    expect(Student.create({})).toBeInstanceOf(Object);
+    expect(Student.create({ email: 'hello@hello.hello' })).toBeInstanceOf(
+      Student,
+    );
   });
 
   it('should be able to give us the student email', () => {

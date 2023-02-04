@@ -3,7 +3,17 @@ interface Props {
 }
 
 export class Student {
-  static create(props: unknown): Student {
-    return props;
+  email: string;
+
+  private constructor(props: Props) {
+    this.email = props.email;
+  }
+
+  get getEmail() {
+    return this.email;
+  }
+
+  static create(props: Props): Student {
+    return new Student(props);
   }
 }
