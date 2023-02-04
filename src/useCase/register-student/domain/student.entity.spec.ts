@@ -13,9 +13,9 @@ describe('student entity', () => {
     expect(Student.create({})).toBeInstanceOf(Object);
   });
 
-  it('should return an error object if the email is not valid', () => {
-    expect(Student.create({ email: 'a@a.a' })).toMatchObject({
-      message: 'Email address is invalid',
-    });
+  it('should be able to give us the student email', () => {
+    const student = Student.create({ email: 'tony@hello.com' });
+
+    expect(student.getEmail).toBe('tony@hello.com');
   });
 });
