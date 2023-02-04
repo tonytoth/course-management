@@ -8,4 +8,8 @@ describe('student entity', () => {
   it('should have a create method', () => {
     expect(Student.create).toBeDefined();
   });
+
+  it('should have a create method which accepts an object as parameters', () => {
+    expect(Student.create({})).toBeDefined();
+  });
 });
