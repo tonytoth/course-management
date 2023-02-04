@@ -14,7 +14,10 @@ describe('student email', () => {
   });
 
   it('should be able to tell us that tony@toth.com is a valid email', () => {
-    expect(StudentEmail.create('tony@toth.com')).toBeInstanceOf(StudentEmail);
+    const studentEmail = StudentEmail.create('tony@toth.com');
+
+    expect(studentEmail).toBeInstanceOf(StudentEmail);
+    expect(studentEmail.getValue()).toBe('tony@toth.com');
   });
 
   it('should be able to tell us that empty string is not a valid email', () => {
