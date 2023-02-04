@@ -1,3 +1,5 @@
+import { StudentEmail } from './domain/student-email';
+
 interface StudentInput {
   email: string;
   firstName: string;
@@ -8,7 +10,9 @@ class RegisterStudent {
   constructor() {}
 
   async execute(input: Partial<StudentInput>) {
-    if (input.email === '') {
+    const studentEmail = StudentEmail.create(input.email || '');
+
+    if (!studentEmail) {
       return {
         data: null,
         errors: [{ message: 'Invalid email address' }],
