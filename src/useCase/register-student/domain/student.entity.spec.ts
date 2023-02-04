@@ -32,4 +32,13 @@ describe('student entity', () => {
 
     expect(student.getFirstName).toBe('Tony');
   });
+
+  it('should be able to give us the student lastName', () => {
+    const student = Student.create({
+      email: 'tony@hello.com',
+      firstName: 'Tony',
+      lastName: 'Toth',
+    });
+    expect(student.getLastName).toBe('Toth');
+  });
 });
