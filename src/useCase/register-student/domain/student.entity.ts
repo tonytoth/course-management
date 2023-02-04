@@ -1,3 +1,5 @@
 export class Student {
-  static create() {}
+  static create(props: unknown) {
+    return props;
+  }
 }

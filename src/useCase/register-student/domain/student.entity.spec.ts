@@ -10,6 +10,6 @@ describe('student entity', () => {
   });
 
   it('should have a create method which accepts an object as parameters', () => {
-    expect(Student.create({})).toBeDefined();
+    expect(Student.create({})).toBeInstanceOf(Object);
   });
 });
