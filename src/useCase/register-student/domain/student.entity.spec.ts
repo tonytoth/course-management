@@ -10,13 +10,16 @@ describe('student entity', () => {
   });
 
   it('should have a create method which accepts an object as parameters', () => {
-    expect(Student.create({ email: 'hello@hello.hello' })).toBeInstanceOf(
-      Student,
-    );
+    expect(
+      Student.create({ email: 'hello@hello.hello', firstName: 'FirstStudent' }),
+    ).toBeInstanceOf(Student);
   });
 
   it('should be able to give us the student email', () => {
-    const student = Student.create({ email: 'tony@hello.com' });
+    const student = Student.create({
+      email: 'tony@hello.com',
+      firstName: 'Student',
+    });
 
     expect(student.getEmail).toBe('tony@hello.com');
   });
