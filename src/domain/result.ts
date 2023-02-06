@@ -16,6 +16,10 @@ export class Result<T> {
     this.errors = props.errors;
   }
 
+  getValue() {
+    return this.data;
+  }
+
   static isFine(param: unknown) {
     return new Result({
       data: param,
