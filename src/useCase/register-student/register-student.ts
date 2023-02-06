@@ -24,6 +24,8 @@ class RegisterStudent {
       return Result.isNotFine('Invalid firstName');
     }
 
+    const studentLastName = StudentLastName.create(input.lastName || '');
+
     return Result.isFine(input);
   }
 }
