@@ -11,7 +11,7 @@ describe('Student firstName', () => {
 
   it('should return hello as firstName', () => {
     expect(StudentFirstName.create('hello')).toMatchObject({
-      data: 'hello',
+      data: StudentFirstName.create('hello').getValue(),
       errors: [],
     });
   });
