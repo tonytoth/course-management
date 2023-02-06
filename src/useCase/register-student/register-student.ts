@@ -20,7 +20,7 @@ class RegisterStudent {
 
     const studentFirstName = StudentFirstName.create(input.firstName || '');
 
-    if (studentFirstName.errors.length > 0) {
+    if (studentFirstName.hasErrors()) {
       return Result.isNotFine('Invalid firstName');
     }
 

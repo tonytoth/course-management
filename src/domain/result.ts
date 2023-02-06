@@ -16,19 +16,23 @@ export class Result<T> {
     this.errors = props.errors;
   }
 
-  getValue() {
+  getValue(): T {
     return this.data;
   }
 
-  static isFine(param: unknown) {
-    return new Result({
+  hasErrors(): boolean {
+    return this.errors.length > 0;
+  }
+
+  static isFine<T>(param: T): Result<T> {
+    return new Result<T>({
       data: param,
       errors: [],
     });
   }
 
-  static isNotFine(message: string) {
-    return new Result({
+  static isNotFine(message: string): Result<null> {
+    return new Result<null>({
       data: null,
       errors: [{ message }],
     });

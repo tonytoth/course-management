@@ -16,6 +16,8 @@ export class StudentFirstName {
       return Result.isNotFine('firstName length should be greater than 2');
     }
 
-    return Result.isFine(new StudentFirstName(firstNameInput));
+    return Result.isFine<StudentFirstName>(
+      new StudentFirstName(firstNameInput),
+    );
   }
 }
