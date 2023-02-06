@@ -1,3 +1,4 @@
+import { Result } from './result';
 import { StudentLastName } from './student-last-name';
 
 describe('student last name', () => {
@@ -10,11 +11,10 @@ describe('student last name', () => {
   });
 
   it('should return a result with the last name World', () => {
-    expect(StudentLastName.create('World')).toMatchObject({
-      data: 'World',
-      errors: [],
-    });
-    expect(StudentLastName.create('World').getValue()).toBe('World');
+    expect(StudentLastName.create('World')).toMatchObject(
+      Result.isFine(StudentLastName.create('World').getValue()),
+    );
+    expect(StudentLastName.create('World').hasErrors()).toBe(false);
   });
 
   it('should return a result with error if the last name is empty', () => {

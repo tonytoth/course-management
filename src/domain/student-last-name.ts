@@ -1,12 +1,16 @@
 import { Result } from './result';
 
 export class StudentLastName {
-  private constructor() {}
+  lastName: string;
+
+  private constructor(lastNameInput: string) {
+    this.lastName = lastNameInput;
+  }
 
   static create(lastNameInput: string): Result<StudentLastName | null> {
     if (lastNameInput === '') {
       return Result.isNotFine('Invalid firstName');
     }
-    return Result.isFine(lastNameInput);
+    return Result.isFine<StudentLastName>(new StudentLastName(lastNameInput));
   }
 }
