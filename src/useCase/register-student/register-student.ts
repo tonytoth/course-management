@@ -27,6 +27,10 @@ class RegisterStudent {
 
     const studentLastName = StudentLastName.create(input.lastName || '');
 
+    if(studentLastName.hasErrors()) {
+      return Result.isNotFine('Invalid lastName');
+    }
+
     return Result.isFine(input);
   }
 }
