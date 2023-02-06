@@ -115,4 +115,42 @@ defineFeature(feature, (test) => {
       },
     );
   });
+
+  test("Fails to register a student that doesn't have a lastName", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    let registerStudentUseCase: RegisterStudent;
+    let studentInput: Partial<StudentInput>;
+
+    given('a student is not registered yet', () => {
+      registerStudentUseCase = new RegisterStudent();
+    });
+    when('the student is trying to register', () => {
+      studentInput = {
+        firstName: 'World',
+        email: 'tony@world.com',
+      };
+    });
+    and("he doesn't type his lastName", () => {
+      studentInput.lastName = '';
+    });
+    then(
+      'the student should get an error that he needs to add his lastName in order to register',
+      async () => {
+        const response = await registerStudentUseCase.execute(studentInput);
+
+        expect(response).toEqual({
+          data: null,
+          errors: [
+            {
+              message: 'Invalid lastName',
+            },
+          ],
+        });
+      },
+    );
+  });
 });
