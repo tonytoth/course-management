@@ -31,7 +31,7 @@ class RegisterStudent {
       return Result.isNotFine('Invalid lastName');
     }
 
-    return Result.isFine(input);
+    return Result.isFine<StudentInput>(input as StudentInput);
   }
 }
 
