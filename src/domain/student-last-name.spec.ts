@@ -15,4 +15,11 @@ describe('student last name', () => {
       errors: [],
     });
   });
+
+  it('should return a result with error if the last name is empty', () => {
+    expect(StudentLastName.create('')).toMatchObject({
+      data: null,
+      errors: [{ message: 'Invalid firstName' }],
+    });
+  });
 });
