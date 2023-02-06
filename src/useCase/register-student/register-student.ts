@@ -1,6 +1,6 @@
-import { Result } from './domain/result';
-import { StudentEmail } from './domain/student-email';
-import { StudentFirstName } from './domain/student-first-name';
+import { Result } from '../../domain/result';
+import { StudentEmail } from '../../domain/student-email';
+import { StudentFirstName } from '../../domain/student-first-name';
 
 interface StudentInput {
   email: string;
