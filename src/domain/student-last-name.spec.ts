@@ -14,6 +14,7 @@ describe('student last name', () => {
       data: 'World',
       errors: [],
     });
+    expect(StudentLastName.create('World').getValue()).toBe('World');
   });
 
   it('should return a result with error if the last name is empty', () => {
