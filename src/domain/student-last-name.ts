@@ -1,1 +1,5 @@
-export class StudentLastName {}
+export class StudentLastName {
+  private constructor() {}
+
+  static create() {}
+}
