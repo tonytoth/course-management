@@ -12,8 +12,8 @@ describe('Result', () => {
       data: 'tony@hello.com',
       errors: [],
     });
-
-    expect(result).toBeInstanceOf(Result);
+    expect(result.getValue()).toBe('tony@hello.com');
+    expect(result).toBeInstanceOf(Result<string>);
   });
 
   it('should be able to return an error if the email is not valid', () => {
@@ -23,7 +23,7 @@ describe('Result', () => {
       data: null,
       errors: [{ message: 'aa@aa.c' }],
     });
-
-    expect(result).toBeInstanceOf(Result);
+    expect(result.hasErrors()).toBe(true);
+    expect(result).toBeInstanceOf(Result<null>);
   });
 });
