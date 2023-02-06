@@ -1,5 +1,9 @@
+import { Result } from "./result";
+
 export class StudentLastName {
   private constructor() {}
 
-  static create() {}
+  static create(lastNameInput: string) {
+    return Result.isFine(lastNameInput);
+  }
 }
