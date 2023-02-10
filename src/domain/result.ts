@@ -20,6 +20,10 @@ export class Result<T> {
     return this.data;
   }
 
+  getFirstError(): Error {
+    return this.errors[0];
+  }
+
   hasErrors(): boolean {
     return this.errors.length > 0;
   }

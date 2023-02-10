@@ -12,6 +12,7 @@ describe('Result', () => {
       data: 'tony@hello.com',
       errors: [],
     });
+    expect(result.getFirstError()).toBe(undefined);
     expect(result.getValue()).toBe('tony@hello.com');
     expect(result).toBeInstanceOf(Result<string>);
   });
@@ -23,6 +24,7 @@ describe('Result', () => {
       data: null,
       errors: [{ message: 'aa@aa.c' }],
     });
+    expect(result.getFirstError()).toMatchObject({ message: 'aa@aa.c' });
     expect(result.hasErrors()).toBe(true);
     expect(result).toBeInstanceOf(Result<null>);
   });

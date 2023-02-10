@@ -1,7 +1,5 @@
 import { Result } from '../../domain/result';
-import { StudentEmail } from '../../domain/student-email';
-import { StudentFirstName } from '../../domain/student-first-name';
-import { StudentLastName } from '../../domain/student-last-name';
+import { Student } from '../../domain/student.entity';
 
 interface StudentInput {
   email: string;
@@ -13,25 +11,17 @@ class RegisterStudent {
   constructor() {}
 
   async execute(input: Partial<StudentInput>) {
-    const studentEmail = StudentEmail.create(input.email || '');
+    const studentResult = Student.create({
+      email: input.email || '',
+      firstName: input.firstName || '',
+      lastName: input.lastName || '',
+    });
 
-    if (studentEmail.hasErrors()) {
-      return Result.isNotFine('Invalid email address');
+    if (studentResult.hasErrors()) {
+      return Result.isNotFine(studentResult.getFirstError().message);
     }
 
-    const studentFirstName = StudentFirstName.create(input.firstName || '');
-
-    if (studentFirstName.hasErrors()) {
-      return Result.isNotFine('Invalid firstName');
-    }
-
-    const studentLastName = StudentLastName.create(input.lastName || '');
-
-    if (studentLastName.hasErrors()) {
-      return Result.isNotFine('Invalid lastName');
-    }
-
-    return Result.isFine<StudentInput>(input as StudentInput);
+    return Result.isFine(studentResult.getValue());
   }
 }
 

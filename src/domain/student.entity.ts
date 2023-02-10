@@ -33,21 +33,21 @@ export class Student {
   }
 
   static create(props: Props): Result<Student | null> {
-    const studentEmail = StudentEmail.create(props.email);
+    const studentEmailResult = StudentEmail.create(props.email);
 
-    if (studentEmail.hasErrors()) {
+    if (studentEmailResult.hasErrors()) {
       return Result.isNotFine('Invalid email address');
     }
 
-    const studentFirstName = StudentFirstName.create(props.firstName);
+    const studentFirstNameResult = StudentFirstName.create(props.firstName);
 
-    if (studentFirstName.hasErrors()) {
+    if (studentFirstNameResult.hasErrors()) {
       return Result.isNotFine('Invalid firstName');
     }
 
-    const studentLastName = StudentLastName.create(props.lastName);
+    const studentLastNameResult = StudentLastName.create(props.lastName);
 
-    if (studentLastName.hasErrors()) {
+    if (studentLastNameResult.hasErrors()) {
       return Result.isNotFine('Invalid lastName');
     }
 

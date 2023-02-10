@@ -1,5 +1,7 @@
+import { Student } from './../../domain/student.entity';
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import path from 'path';
+import { Result } from '../../domain/result';
 
 import { RegisterStudent } from './register-student';
 
@@ -31,6 +33,7 @@ defineFeature(feature, (test) => {
     });
 
     then('the student should be successfully registered', () => {
+      expect(response).toBeInstanceOf(Result<Student>);
       expect(response).toEqual({
         data: {
           email: 'tony@email.com',
