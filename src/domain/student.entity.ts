@@ -1,3 +1,6 @@
+import { Result } from "./result";
+import { StudentEmail } from "./student-email";
+
 interface Props {
   email: string;
   firstName: string;
@@ -28,6 +31,12 @@ export class Student {
   }
 
   static create(props: Props): Student {
+    const studentEmail = StudentEmail.create(props.email);
+
+    if (studentEmail.hasErrors()) {
+      return Result.isNotFine('Invalid email address') as never;
+    }
+
     return new Student(props);
   }
 }
