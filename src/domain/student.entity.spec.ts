@@ -71,7 +71,7 @@ describe('student entity', () => {
     });
   });
 
-  it('should be able to give us an error if the firstName is invalid', () => {
+  it('should be able to give us an error if the firstName is empty', () => {
     const student = Student.create({
       email: 'taa@aaa.cc',
       firstName: '',
@@ -84,6 +84,24 @@ describe('student entity', () => {
       errors: [
         {
           message: 'Invalid firstName',
+        },
+      ],
+    });
+  });
+
+  it('should be able to give us an error if the lastName is empty', () => {
+    const student = Student.create({
+      email: 'taa@aaa.cc',
+      lastName: '',
+      firstName: 'Toth',
+    });
+
+    expect(student).toBeInstanceOf(Result<null>);
+    expect(student).toMatchObject({
+      data: null,
+      errors: [
+        {
+          message: 'Invalid lastName',
         },
       ],
     });
