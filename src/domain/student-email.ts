@@ -1,3 +1,5 @@
+import { Result } from './result';
+
 interface StudentEmailI {
   email: string;
   getValue: () => string;
@@ -44,10 +46,10 @@ export class StudentEmail implements StudentEmailI {
     return true;
   }
 
-  public static create(email: string): StudentEmail | false {
+  public static create(email: string): Result<StudentEmail | null> {
     if (!StudentEmail.isValid(email)) {
-      return false;
+      return Result.isNotFine('Invalid email address');
     }
-    return new StudentEmail(email);
+    return Result.isFine(new StudentEmail(email));
   }
 }

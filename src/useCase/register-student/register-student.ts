@@ -15,7 +15,7 @@ class RegisterStudent {
   async execute(input: Partial<StudentInput>) {
     const studentEmail = StudentEmail.create(input.email || '');
 
-    if (!studentEmail) {
+    if (studentEmail.hasErrors()) {
       return Result.isNotFine('Invalid email address');
     }
 
