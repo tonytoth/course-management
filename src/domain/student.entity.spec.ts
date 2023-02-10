@@ -17,7 +17,7 @@ describe('student entity', () => {
         firstName: 'FirstStudent',
         lastName: 'New',
       }),
-    ).toBeInstanceOf(Student);
+    ).toBeInstanceOf(Result<Student>);
   });
 
   it('should be able to give us the student email', () => {
