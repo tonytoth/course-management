@@ -15,7 +15,7 @@ export class StudentEmail implements StudentEmailI {
     this.email = email;
   }
 
-  static isValid(email: string) {
+  isValid(email: string) {
     const emailSplittedByAnchor = email.split('@');
     const userNameFromEmail = emailSplittedByAnchor[0];
     const domainAndTopLevelDomainFromEmail = emailSplittedByAnchor[1];
@@ -47,9 +47,12 @@ export class StudentEmail implements StudentEmailI {
   }
 
   public static create(email: string): Result<StudentEmail | null> {
-    if (!StudentEmail.isValid(email)) {
+    const studentEmail = new StudentEmail(email);
+
+    if (!studentEmail.isValid(email)) {
       return Result.isNotFine('Invalid email address');
     }
-    return Result.isFine(new StudentEmail(email));
+
+    return Result.isFine(studentEmail);
   }
 }
