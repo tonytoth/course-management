@@ -30,13 +30,13 @@ export class Student {
     return this.lastName;
   }
 
-  static create(props: Props): Student | Result<null> {
+  static create(props: Props): Result<Student | null> {
     const studentEmail = StudentEmail.create(props.email);
 
     if (studentEmail.hasErrors()) {
       return Result.isNotFine('Invalid email address');
     }
 
-    return new Student(props);
+    return Result.isFine(new Student(props));
   }
 }

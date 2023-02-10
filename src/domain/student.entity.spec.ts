@@ -25,9 +25,10 @@ describe('student entity', () => {
       email: 'tony@hello.com',
       firstName: 'Student',
       lastName: 'Toth',
-    });
+    }) as Result<Student>;
 
-    expect(student.getEmail).toBe('tony@hello.com');
+    expect(student).toBeInstanceOf(Result<Student>);
+    expect(student.getValue().getEmail).toBe('tony@hello.com');
   });
 
   it('should be able to give us the student firstName', () => {
@@ -35,9 +36,10 @@ describe('student entity', () => {
       email: 'tony@hello.com',
       firstName: 'Tony',
       lastName: 'Toth',
-    });
+    }) as Result<Student>;
 
-    expect(student.getFirstName).toBe('Tony');
+    expect(student).toBeInstanceOf(Result<Student>);
+    expect(student.getValue().getFirstName).toBe('Tony');
   });
 
   it('should be able to give us the student lastName', () => {
@@ -45,8 +47,10 @@ describe('student entity', () => {
       email: 'tony@hello.com',
       firstName: 'Tony',
       lastName: 'Toth',
-    });
-    expect(student.getLastName).toBe('Toth');
+    }) as Result<Student>;
+
+    expect(student).toBeInstanceOf(Result<Student>);
+    expect(student.getValue().getLastName).toBe('Toth');
   });
 
   it('should be able to give us an error if the email is not valid', () => {
