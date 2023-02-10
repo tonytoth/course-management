@@ -1,6 +1,7 @@
-import { Result } from "./result";
-import { StudentEmail } from "./student-email";
-import { StudentFirstName } from "./student-first-name";
+import { StudentLastName } from './student-last-name';
+import { Result } from './result';
+import { StudentEmail } from './student-email';
+import { StudentFirstName } from './student-first-name';
 
 interface Props {
   email: string;
@@ -42,6 +43,12 @@ export class Student {
 
     if (studentFirstName.hasErrors()) {
       return Result.isNotFine('Invalid firstName');
+    }
+
+    const studentLastName = StudentLastName.create(props.lastName);
+
+    if (studentLastName.hasErrors()) {
+      return Result.isNotFine('Invalid lastName');
     }
 
     return Result.isFine(new Student(props));
