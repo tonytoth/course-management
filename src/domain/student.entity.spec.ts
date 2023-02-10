@@ -70,4 +70,22 @@ describe('student entity', () => {
       ],
     });
   });
+
+  it('should be able to give us an error if the firstName is invalid', () => {
+    const student = Student.create({
+      email: 'taa@aaa.cc',
+      firstName: '',
+      lastName: 'Toth',
+    });
+
+    expect(student).toBeInstanceOf(Result<null>);
+    expect(student).toMatchObject({
+      data: null,
+      errors: [
+        {
+          message: 'Invalid firstName',
+        },
+      ],
+    });
+  });
 });
