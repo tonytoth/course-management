@@ -1,3 +1,4 @@
+import { Result } from './result';
 import { Student } from './student.entity';
 
 describe('student entity', () => {
@@ -46,5 +47,23 @@ describe('student entity', () => {
       lastName: 'Toth',
     });
     expect(student.getLastName).toBe('Toth');
+  });
+
+  it('should be able to give us an error if the email is not valid', () => {
+    const student = Student.create({
+      email: 't@aa.cc',
+      firstName: 'Tony',
+      lastName: 'Toth',
+    });
+
+    expect(student).toBeInstanceOf(Result<null>);
+    expect(student).toMatchObject({
+      data: null,
+      errors: [
+        {
+          message: 'Invalid email address',
+        },
+      ],
+    });
   });
 });
