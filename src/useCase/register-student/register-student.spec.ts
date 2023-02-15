@@ -1,8 +1,9 @@
-import { Student } from './../../domain/student.entity';
-import { defineFeature, loadFeature } from 'jest-cucumber';
 import path from 'path';
-import { Result } from '../../domain/result';
+import { defineFeature, loadFeature } from 'jest-cucumber';
 
+import { StudentRepository } from './../../student.repository';
+import { Student } from './../../domain/student.entity';
+import { Result } from '../../domain/result';
 import { RegisterStudent } from './register-student';
 
 const feature = loadFeature(path.join(__dirname, './register-student.feature'));
@@ -33,6 +34,9 @@ defineFeature(feature, (test) => {
     });
 
     then('the student should be successfully registered', () => {
+      expect(registerStudentUseCase).toHaveProperty<StudentRepository>(
+        'studentRespository',
+      );
       expect(response).toBeInstanceOf(Result<Student>);
       expect(response).toEqual({
         data: {
@@ -69,6 +73,10 @@ defineFeature(feature, (test) => {
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
 
+        expect(registerStudentUseCase).toHaveProperty<StudentRepository>(
+          'studentRespository',
+        );
+
         expect(response).toEqual({
           data: null,
           errors: [
@@ -93,20 +101,26 @@ defineFeature(feature, (test) => {
     given('a student is not registered yet', () => {
       registerStudentUseCase = new RegisterStudent();
     });
+
     when('the student is trying to register', () => {
       studentInput = {
         lastName: 'World',
         email: 'tony@world.com',
       };
     });
+
     and("he doesn't type his firstName", () => {
       studentInput.firstName = '';
     });
+
     then(
       'the student should get an error that he needs to add his firstName in order to register',
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
 
+        expect(registerStudentUseCase).toHaveProperty<StudentRepository>(
+          'studentRespository',
+        );
         expect(response).toEqual({
           data: null,
           errors: [
@@ -131,19 +145,26 @@ defineFeature(feature, (test) => {
     given('a student is not registered yet', () => {
       registerStudentUseCase = new RegisterStudent();
     });
+
     when('the student is trying to register', () => {
       studentInput = {
         firstName: 'World',
         email: 'tony@world.com',
       };
     });
+
     and("he doesn't type his lastName", () => {
       studentInput.lastName = '';
     });
+
     then(
       'the student should get an error that he needs to add his lastName in order to register',
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
+
+        expect(registerStudentUseCase).toHaveProperty<StudentRepository>(
+          'studentRespository',
+        );
 
         expect(response).toEqual({
           data: null,
