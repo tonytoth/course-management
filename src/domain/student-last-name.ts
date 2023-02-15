@@ -9,7 +9,7 @@ export class StudentLastName {
 
   static create(lastNameInput: string): Result<StudentLastName | null> {
     if (lastNameInput === '') {
-      return Result.isNotFine('Invalid firstName');
+      return Result.isNotFine('Invalid lastName');
     }
     return Result.isFine<StudentLastName>(new StudentLastName(lastNameInput));
   }
