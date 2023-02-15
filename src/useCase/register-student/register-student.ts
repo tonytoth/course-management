@@ -1,5 +1,6 @@
 import { Result } from '../../domain/result';
 import { Student } from '../../domain/student.entity';
+import { StudentRepository } from '../../student.repository';
 
 interface StudentInput {
   email: string;
@@ -8,7 +9,11 @@ interface StudentInput {
 }
 
 class RegisterStudent {
-  constructor() {}
+  studentRepository: StudentRepository;
+
+  constructor(studentRepository: StudentRepository) {
+    this.studentRepository = studentRepository;
+  }
 
   async execute(input: Partial<StudentInput>) {
     const studentResult = Student.create({

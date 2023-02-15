@@ -5,6 +5,7 @@ import { StudentRepository } from './../../student.repository';
 import { Student } from './../../domain/student.entity';
 import { Result } from '../../domain/result';
 import { RegisterStudent } from './register-student';
+import { StudentRepositoryMock } from '../../mock/student.repository.mock';
 
 const feature = loadFeature(path.join(__dirname, './register-student.feature'));
 
@@ -18,9 +19,11 @@ defineFeature(feature, (test) => {
   test('Successfully register a student', ({ given, when, then }) => {
     let registerStudentUseCase: RegisterStudent;
     let response: unknown;
+    let studentRepository: StudentRepositoryMock;
 
     given('a student is not registered yet', () => {
-      registerStudentUseCase = new RegisterStudent();
+      studentRepository = new StudentRepositoryMock();
+      registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
     when('the student is trying to get registered', async () => {
@@ -34,9 +37,9 @@ defineFeature(feature, (test) => {
     });
 
     then('the student should be successfully registered', () => {
-      expect(registerStudentUseCase).toHaveProperty<StudentRepository>(
-        'studentRespository',
-      );
+      expect(registerStudentUseCase).toMatchObject({
+        studentRepository,
+      });
       expect(response).toBeInstanceOf(Result<Student>);
       expect(response).toEqual({
         data: {
@@ -52,9 +55,11 @@ defineFeature(feature, (test) => {
   test('Fails to register a student', ({ given, when, then, and }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
+    let studentRepository: StudentRepositoryMock;
 
     given('a student is not registered yet', () => {
-      registerStudentUseCase = new RegisterStudent();
+      studentRepository = new StudentRepositoryMock();
+      registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
     when('the student is trying to register', () => {
@@ -73,9 +78,9 @@ defineFeature(feature, (test) => {
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
 
-        expect(registerStudentUseCase).toHaveProperty<StudentRepository>(
-          'studentRespository',
-        );
+        expect(registerStudentUseCase).toMatchObject({
+          studentRepository,
+        });
 
         expect(response).toEqual({
           data: null,
@@ -97,9 +102,11 @@ defineFeature(feature, (test) => {
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
+    let studentRepository: StudentRepositoryMock;
 
     given('a student is not registered yet', () => {
-      registerStudentUseCase = new RegisterStudent();
+      studentRepository = new StudentRepositoryMock();
+      registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
     when('the student is trying to register', () => {
@@ -118,9 +125,10 @@ defineFeature(feature, (test) => {
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
 
-        expect(registerStudentUseCase).toHaveProperty<StudentRepository>(
-          'studentRespository',
-        );
+        expect(registerStudentUseCase).toMatchObject({
+          studentRepository,
+        });
+
         expect(response).toEqual({
           data: null,
           errors: [
@@ -141,9 +149,11 @@ defineFeature(feature, (test) => {
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
+    let studentRepository: StudentRepositoryMock;
 
     given('a student is not registered yet', () => {
-      registerStudentUseCase = new RegisterStudent();
+      studentRepository = new StudentRepositoryMock();
+      registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
     when('the student is trying to register', () => {
@@ -162,9 +172,9 @@ defineFeature(feature, (test) => {
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
 
-        expect(registerStudentUseCase).toHaveProperty<StudentRepository>(
-          'studentRespository',
-        );
+        expect(registerStudentUseCase).toMatchObject({
+          studentRepository: studentRepository,
+        });
 
         expect(response).toEqual({
           data: null,
