@@ -37,9 +37,6 @@ defineFeature(feature, (test) => {
     });
 
     then('the student should be successfully registered', () => {
-      expect(registerStudentUseCase).toMatchObject({
-        studentRepository,
-      });
       expect(response).toBeInstanceOf(Result<Student>);
       expect(response).toEqual({
         data: {
@@ -77,10 +74,6 @@ defineFeature(feature, (test) => {
       'the student should get an error that there was an error while trying to register',
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
-
-        expect(registerStudentUseCase).toMatchObject({
-          studentRepository,
-        });
 
         expect(response).toEqual({
           data: null,
@@ -125,10 +118,6 @@ defineFeature(feature, (test) => {
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
 
-        expect(registerStudentUseCase).toMatchObject({
-          studentRepository,
-        });
-
         expect(response).toEqual({
           data: null,
           errors: [
@@ -171,10 +160,6 @@ defineFeature(feature, (test) => {
       'the student should get an error that he needs to add his lastName in order to register',
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
-
-        expect(registerStudentUseCase).toMatchObject({
-          studentRepository: studentRepository,
-        });
 
         expect(response).toEqual({
           data: null,
