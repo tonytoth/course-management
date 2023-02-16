@@ -23,7 +23,7 @@ Feature: Register Student
     And he doesn't type his lastName
     Then the student should get an error that he needs to add his lastName in order to register
 
-# Scenario: Fails to create a student
-#   Given a student is already registered
-#   When the student is trying to register
-#   Then the student should get an error that he was already registered
+  Scenario: Fails to create a student if it already exists
+    Given a student is already registered
+    When the student is trying to register
+    Then the student should get an error that he was already registered

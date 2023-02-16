@@ -1,7 +1,6 @@
 import path from 'path';
 import { defineFeature, loadFeature } from 'jest-cucumber';
 
-import { StudentRepository } from './../../student.repository';
 import { Student } from './../../domain/student.entity';
 import { Result } from '../../domain/result';
 import { RegisterStudent } from './register-student';
@@ -166,6 +165,46 @@ defineFeature(feature, (test) => {
           errors: [
             {
               message: 'Invalid lastName',
+            },
+          ],
+        });
+      },
+    );
+  });
+
+  test('Fails to create a student if it already exists', ({
+    given,
+    when,
+    then,
+  }) => {
+    let registerStudentUseCase: RegisterStudent;
+    let response: unknown;
+    let studentRepository: StudentRepositoryMock;
+
+    given('a student is already registered', () => {
+      studentRepository = new StudentRepositoryMock();
+      registerStudentUseCase = new RegisterStudent(studentRepository);
+    });
+
+    when('the student is trying to register', async () => {
+      const studentInput: StudentInput = {
+        email: 'tony@email.com',
+        firstName: 'Tony',
+        lastName: 'Toth',
+      };
+
+      response = await registerStudentUseCase.execute(studentInput);
+    });
+
+    then(
+      'the student should get an error that he was already registered',
+      () => {
+        expect(response).toBe({
+          data: null,
+          errors: [
+            {
+              message: 'Student already created',
+              type: 'StudentAlreadyCreated',
             },
           ],
         });
