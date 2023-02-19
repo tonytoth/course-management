@@ -26,16 +26,20 @@ class RegisterStudent {
       return Result.isNotFine(studentResult.getFirstError().message);
     }
 
-    if (await this.studentRepository.getByEmail(input.email!)) {
+    const successfulStudent = Result.isFine<Student>(
+      studentResult.getValue() as Student,
+    );
+
+    const studentAlreadyExists = await this.studentRepository.getByEmail(
+      successfulStudent.getValue().email,
+    );
+
+    if (studentAlreadyExists) {
       return Result.isNotFine(
         'Student already created',
         'StudentAlreadyCreated',
       );
     }
-
-    const successfulStudent = Result.isFine<Student>(
-      studentResult.getValue() as Student,
-    );
 
     this.studentRepository.save(successfulStudent.getValue());
 

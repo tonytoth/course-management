@@ -21,5 +21,7 @@ export class StudentRepositoryStub implements StudentRepository {
     return undefined;
   }
 
-  async save(student: Student): Promise<void> {}
+  async save(student: Student): Promise<void> {
+    this.students?.push(student);
+  }
 }
