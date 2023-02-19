@@ -23,7 +23,7 @@ class RegisterStudent {
     });
 
     if (studentResult.hasErrors()) {
-      return Result.isNotFine(studentResult.getFirstError().message);
+      return Result.isNotFine(studentResult.getFirstError());
     }
 
     const successfulStudent = Result.isFine<Student>(
@@ -35,10 +35,10 @@ class RegisterStudent {
     );
 
     if (studentAlreadyExists) {
-      return Result.isNotFine(
-        'Student already created',
-        'StudentAlreadyCreated',
-      );
+      return Result.isNotFine({
+        message: 'Student already created',
+        type: 'StudentAlreadyCreated',
+      });
     }
 
     this.studentRepository.save(successfulStudent.getValue());

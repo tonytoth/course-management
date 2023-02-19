@@ -36,19 +36,19 @@ export class Student {
     const studentEmailResult = StudentEmail.create(props.email);
 
     if (studentEmailResult.hasErrors()) {
-      return Result.isNotFine(studentEmailResult.getFirstError().message);
+      return Result.isNotFine(studentEmailResult.getFirstError());
     }
 
     const studentFirstNameResult = StudentFirstName.create(props.firstName);
 
     if (studentFirstNameResult.hasErrors()) {
-      return Result.isNotFine(studentFirstNameResult.getFirstError().message);
+      return Result.isNotFine(studentFirstNameResult.getFirstError());
     }
 
     const studentLastNameResult = StudentLastName.create(props.lastName);
 
     if (studentLastNameResult.hasErrors()) {
-      return Result.isNotFine(studentLastNameResult.getFirstError().message);
+      return Result.isNotFine(studentLastNameResult.getFirstError());
     }
 
     return Result.isFine<Student>(new Student(props));

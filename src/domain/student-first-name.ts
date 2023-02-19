@@ -9,11 +9,17 @@ export class StudentFirstName {
 
   static create(firstNameInput: string) {
     if (firstNameInput === '') {
-      return Result.isNotFine('Invalid firstName');
+      return Result.isNotFine({
+        message: 'Invalid firstName',
+        type: 'InvalidFirstName',
+      });
     }
 
     if (firstNameInput.length < 2) {
-      return Result.isNotFine('firstName length should be greater than 2');
+      return Result.isNotFine({
+        message: 'firstName length should be greater than 2',
+        type: 'InvalidFirstName',
+      });
     }
 
     return Result.isFine<StudentFirstName>(

@@ -50,7 +50,10 @@ export class StudentEmail implements StudentEmailI {
     const studentEmail = new StudentEmail(email);
 
     if (!studentEmail.isValid(email)) {
-      return Result.isNotFine('Invalid email address');
+      return Result.isNotFine({
+        message: 'Invalid email address',
+        type: 'InvalidEmailAddress',
+      });
     }
 
     return Result.isFine(studentEmail);

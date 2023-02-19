@@ -80,6 +80,7 @@ defineFeature(feature, (test) => {
           errors: [
             {
               message: 'Invalid email address',
+              type: 'InvalidEmailAddress',
             },
           ],
         });
@@ -123,6 +124,7 @@ defineFeature(feature, (test) => {
           errors: [
             {
               message: 'Invalid firstName',
+              type: 'InvalidFirstName',
             },
           ],
         });
@@ -166,6 +168,7 @@ defineFeature(feature, (test) => {
           errors: [
             {
               message: 'Invalid lastName',
+              type: 'InvalidLastName',
             },
           ],
         });

@@ -18,22 +18,28 @@ describe('Result', () => {
   });
 
   it('should be able to return an error if the email is not valid', () => {
-    const result = Result.isNotFine('aa@aa.c');
+    const result = Result.isNotFine({
+      message: 'aa@aa.c',
+      type: 'InvalidEmailAddress',
+    });
 
     expect(result).toMatchObject({
       data: null,
       errors: [{ message: 'aa@aa.c' }],
     });
-    expect(result.getFirstError()).toMatchObject({ message: 'aa@aa.c' });
+    expect(result.getFirstError()).toMatchObject({
+      message: 'aa@aa.c',
+      type: 'InvalidEmailAddress',
+    });
     expect(result.hasErrors()).toBe(true);
     expect(result).toBeInstanceOf(Result<null>);
   });
 
   it('should be able to return an error type along side the error message', () => {
-    const result = Result.isNotFine(
-      'Student already exists',
-      'StudentAlreadyCreated',
-    );
+    const result = Result.isNotFine({
+      message: 'Student already exists',
+      type: 'StudentAlreadyCreated',
+    });
 
     expect(result).toMatchObject({
       data: null,
