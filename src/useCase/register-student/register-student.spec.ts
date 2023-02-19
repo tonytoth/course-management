@@ -22,7 +22,9 @@ defineFeature(feature, (test) => {
     let studentRepository: StudentRepositoryStub;
 
     given('a student is not registered yet', () => {
-      studentRepository = new StudentRepositoryStub();
+      studentRepository = new StudentRepositoryBuilder()
+        .withDefaultValues()
+        .build();
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
@@ -55,7 +57,9 @@ defineFeature(feature, (test) => {
     let studentRepository: StudentRepositoryStub;
 
     given('a student is not registered yet', () => {
-      studentRepository = new StudentRepositoryStub();
+      studentRepository = new StudentRepositoryBuilder()
+        .withDefaultValues()
+        .build();
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
@@ -99,7 +103,9 @@ defineFeature(feature, (test) => {
     let studentRepository: StudentRepositoryStub;
 
     given('a student is not registered yet', () => {
-      studentRepository = new StudentRepositoryStub();
+      studentRepository = new StudentRepositoryBuilder()
+        .withDefaultValues()
+        .build();
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
@@ -143,7 +149,9 @@ defineFeature(feature, (test) => {
     let studentRepository: StudentRepositoryStub;
 
     given('a student is not registered yet', () => {
-      studentRepository = new StudentRepositoryStub();
+      studentRepository = new StudentRepositoryBuilder()
+        .withDefaultValues()
+        .build();
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 

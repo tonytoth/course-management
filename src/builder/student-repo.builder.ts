@@ -15,6 +15,7 @@ export class StudentRepositoryBuilder {
 
   withDefaultValues() {
     this.repository.addStudents([]);
+    return this;
   }
 
   withStudents(students: StudentI[]) {
