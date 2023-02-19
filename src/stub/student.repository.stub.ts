@@ -5,15 +5,21 @@ import { StudentRepository } from '../student.repository';
 export class StudentRepositoryStub implements StudentRepository {
   students: StudentI[] | undefined;
 
-  constructor() {}
-
   addStudents(students: StudentI[]) {
     this.students = students;
   }
 
-  getByEmail(email: string): Student | undefined {
+  async getByEmail(email: string): Promise<Student | undefined> {
+    const foundStudent = this.students?.find(
+      (student) => student.email === email,
+    );
+
+    if (foundStudent) {
+      return Student.create(foundStudent).getValue() || undefined;
+    }
+
     return undefined;
   }
 
-  save(student: Student): void {}
+  async save(student: Student): Promise<void> {}
 }

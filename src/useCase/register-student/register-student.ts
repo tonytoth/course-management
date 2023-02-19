@@ -26,6 +26,16 @@ class RegisterStudent {
       return Result.isNotFine(studentResult.getFirstError().message);
     }
 
+    if (await this.studentRepository.getByEmail(input.email!)) {
+      return Result.isNotFine('Student already created');
+    }
+
+    const successfulStudent = Result.isFine<Student>(
+      studentResult.getValue() as Student,
+    );
+
+    this.studentRepository.save(successfulStudent.getValue());
+
     return Result.isFine(studentResult.getValue());
   }
 }

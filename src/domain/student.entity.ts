@@ -51,6 +51,6 @@ export class Student {
       return Result.isNotFine(studentLastNameResult.getFirstError().message);
     }
 
-    return Result.isFine(new Student(props));
+    return Result.isFine<Student>(new Student(props));
   }
 }
