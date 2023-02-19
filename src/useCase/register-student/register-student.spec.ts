@@ -208,7 +208,7 @@ defineFeature(feature, (test) => {
     then(
       'the student should get an error that he was already registered',
       () => {
-        expect(response).toBe({
+        expect(response).toEqual({
           data: null,
           errors: [
             {

@@ -27,7 +27,10 @@ class RegisterStudent {
     }
 
     if (await this.studentRepository.getByEmail(input.email!)) {
-      return Result.isNotFine('Student already created');
+      return Result.isNotFine(
+        'Student already created',
+        'StudentAlreadyCreated',
+      );
     }
 
     const successfulStudent = Result.isFine<Student>(
