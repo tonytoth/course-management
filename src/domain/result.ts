@@ -1,5 +1,6 @@
 interface Error {
   message: string;
+  type?: string;
 }
 
 interface ResultI<T> {
@@ -35,10 +36,10 @@ export class Result<T> {
     });
   }
 
-  static isNotFine(message: string): Result<null> {
+  static isNotFine(message: string, type?: string): Result<null> {
     return new Result<null>({
       data: null,
-      errors: [{ message }],
+      errors: [{ message, type }],
     });
   }
 }
