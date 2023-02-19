@@ -4,7 +4,8 @@ import { defineFeature, loadFeature } from 'jest-cucumber';
 import { Student } from './../../domain/student.entity';
 import { Result } from '../../domain/result';
 import { RegisterStudent } from './register-student';
-import { StudentRepositoryMock } from '../../mock/student.repository.mock';
+import { StudentRepositoryStub } from '../../stub/student.repository.stub';
+import { StudentRepositoryBuilder } from '../../builder/student-repo.builder';
 
 const feature = loadFeature(path.join(__dirname, './register-student.feature'));
 
@@ -18,10 +19,10 @@ defineFeature(feature, (test) => {
   test('Successfully register a student', ({ given, when, then }) => {
     let registerStudentUseCase: RegisterStudent;
     let response: unknown;
-    let studentRepository: StudentRepositoryMock;
+    let studentRepository: StudentRepositoryStub;
 
     given('a student is not registered yet', () => {
-      studentRepository = new StudentRepositoryMock();
+      studentRepository = new StudentRepositoryStub();
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
@@ -51,10 +52,10 @@ defineFeature(feature, (test) => {
   test('Fails to register a student', ({ given, when, then, and }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
-    let studentRepository: StudentRepositoryMock;
+    let studentRepository: StudentRepositoryStub;
 
     given('a student is not registered yet', () => {
-      studentRepository = new StudentRepositoryMock();
+      studentRepository = new StudentRepositoryStub();
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
@@ -94,10 +95,10 @@ defineFeature(feature, (test) => {
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
-    let studentRepository: StudentRepositoryMock;
+    let studentRepository: StudentRepositoryStub;
 
     given('a student is not registered yet', () => {
-      studentRepository = new StudentRepositoryMock();
+      studentRepository = new StudentRepositoryStub();
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
@@ -137,10 +138,10 @@ defineFeature(feature, (test) => {
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
-    let studentRepository: StudentRepositoryMock;
+    let studentRepository: StudentRepositoryStub;
 
     given('a student is not registered yet', () => {
-      studentRepository = new StudentRepositoryMock();
+      studentRepository = new StudentRepositoryStub();
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
@@ -179,10 +180,18 @@ defineFeature(feature, (test) => {
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let response: unknown;
-    let studentRepository: StudentRepositoryMock;
+    let studentRepository: StudentRepositoryStub;
 
     given('a student is already registered', () => {
-      studentRepository = new StudentRepositoryMock();
+      studentRepository = new StudentRepositoryBuilder()
+        .withStudents([
+          {
+            email: 'tony@email.com',
+            firstName: 'Tony',
+            lastName: 'Toth',
+          },
+        ])
+        .build();
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
