@@ -28,4 +28,11 @@ describe('Result', () => {
     expect(result.hasErrors()).toBe(true);
     expect(result).toBeInstanceOf(Result<null>);
   });
+
+  it('should be able to return an error type along side the erro message', () => {
+    const result = Result.isNotFine(
+      'Student already exists',
+      'StudentAlreadyCreated',
+    );
+  });
 });
