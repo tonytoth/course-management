@@ -34,5 +34,14 @@ describe('Result', () => {
       'Student already exists',
       'StudentAlreadyCreated',
     );
+
+    expect(result).toMatchObject({
+      data: null,
+      errors: [
+        { message: 'Student already exists', type: 'StudentAlreadyCreated' },
+      ],
+    });
+    expect(result.hasErrors()).toBe(true);
+    expect(result).toBeInstanceOf(Result<null>);
   });
 });
