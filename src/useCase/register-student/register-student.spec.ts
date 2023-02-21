@@ -68,16 +68,16 @@ defineFeature(feature, (test) => {
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
-    when('the student is trying to register', () => {
-      studentInput = {
-        firstName: 'Hello',
-        lastName: 'World',
-      };
-    });
-
-    and('he types a wrong email', () => {
-      studentInput.email = '';
-    });
+    when(
+      'the student is trying to register using a wrong email address',
+      () => {
+        studentInput = {
+          firstName: 'Hello',
+          lastName: 'World',
+          email: '',
+        };
+      },
+    );
 
     then(
       'the student should get an error that there was an error while trying to register',
@@ -101,7 +101,6 @@ defineFeature(feature, (test) => {
     given,
     when,
     then,
-    and,
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
@@ -114,15 +113,12 @@ defineFeature(feature, (test) => {
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
-    when('the student is trying to register', () => {
+    when('the student is trying to register without firstName', () => {
       studentInput = {
         lastName: 'World',
         email: 'tony@world.com',
+        firstName: '',
       };
-    });
-
-    and("he doesn't type his firstName", () => {
-      studentInput.firstName = '';
     });
 
     then(
@@ -147,7 +143,6 @@ defineFeature(feature, (test) => {
     given,
     when,
     then,
-    and,
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
@@ -160,17 +155,13 @@ defineFeature(feature, (test) => {
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
 
-    when('the student is trying to register', () => {
+    when('the student is trying to register without lastName', () => {
       studentInput = {
         firstName: 'World',
         email: 'tony@world.com',
+        lastName: '',
       };
     });
-
-    and("he doesn't type his lastName", () => {
-      studentInput.lastName = '';
-    });
-
     then(
       'the student should get an error that he needs to add his lastName in order to register',
       async () => {

@@ -7,20 +7,17 @@ Feature: Register Student
 
   Scenario: Fails to register a student that doesn't have an email address
     Given a student is not registered yet
-    When the student is trying to register
-    And he types a wrong email
+    When the student is trying to register using a wrong email address
     Then the student should get an error that there was an error while trying to register
 
   Scenario: Fails to register a student that doesn't have a firstName
     Given a student is not registered yet
-    When the student is trying to register
-    And he doesn't type his firstName
+    When the student is trying to register without firstName
     Then the student should get an error that he needs to add his firstName in order to register
 
   Scenario: Fails to register a student that doesn't have a lastName
     Given a student is not registered yet
-    When the student is trying to register
-    And he doesn't type his lastName
+    When the student is trying to register without lastName
     Then the student should get an error that he needs to add his lastName in order to register
 
   Scenario: Fails to create a student if it already exists
