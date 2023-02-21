@@ -1,7 +1,7 @@
 import path from 'path';
 import { defineFeature, loadFeature } from 'jest-cucumber';
 
-import { Student } from './../../domain/student.entity';
+import { Student } from '../../domain/student.entity';
 import { Result } from '../../domain/result';
 import { RegisterStudent } from './register-student';
 import { StudentRepositoryFake } from '../../fake/student.repository.fake';
