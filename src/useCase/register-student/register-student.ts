@@ -41,7 +41,7 @@ class RegisterStudent {
       });
     }
 
-    this.studentRepository.save(successfulStudent.getValue());
+    await this.studentRepository.save(successfulStudent.getValue());
 
     return Result.isFine(studentResult.getValue());
   }

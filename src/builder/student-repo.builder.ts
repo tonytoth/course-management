@@ -1,16 +1,16 @@
-import { StudentRepositoryStub } from '../stub/student.repository.stub';
+import { StudentRepositoryFake } from '../fake/student.repository.fake';
 
-export interface StudentI {
+export interface StudentTestProps {
   email: string;
   firstName: string;
   lastName: string;
 }
 
 export class StudentRepositoryBuilder {
-  repository: StudentRepositoryStub;
+  repository: StudentRepositoryFake;
 
   constructor() {
-    this.repository = new StudentRepositoryStub();
+    this.repository = new StudentRepositoryFake();
   }
 
   withDefaultValues() {
@@ -18,12 +18,12 @@ export class StudentRepositoryBuilder {
     return this;
   }
 
-  withStudents(students: StudentI[]) {
+  withStudents(students: StudentTestProps[]) {
     this.repository.addStudents(students);
     return this;
   }
 
-  build(): StudentRepositoryStub {
+  build(): StudentRepositoryFake {
     return this.repository;
   }
 }

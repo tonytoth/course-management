@@ -5,7 +5,7 @@ Feature: Register Student
     When the student is trying to get registered
     Then the student should be successfully registered
 
-  Scenario: Fails to register a student
+  Scenario: Fails to register a student that doesn't have an email address
     Given a student is not registered yet
     When the student is trying to register
     And he types a wrong email

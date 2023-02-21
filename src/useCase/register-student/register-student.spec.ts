@@ -4,7 +4,7 @@ import { defineFeature, loadFeature } from 'jest-cucumber';
 import { Student } from './../../domain/student.entity';
 import { Result } from '../../domain/result';
 import { RegisterStudent } from './register-student';
-import { StudentRepositoryStub } from '../../stub/student.repository.stub';
+import { StudentRepositoryFake } from '../../fake/student.repository.fake';
 import { StudentRepositoryBuilder } from '../../builder/student-repo.builder';
 
 const feature = loadFeature(path.join(__dirname, './register-student.feature'));
@@ -19,7 +19,7 @@ defineFeature(feature, (test) => {
   test('Successfully register a student', ({ given, when, then }) => {
     let registerStudentUseCase: RegisterStudent;
     let response: unknown;
-    let studentRepository: StudentRepositoryStub;
+    let studentRepository: StudentRepositoryFake;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -51,10 +51,15 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('Fails to register a student', ({ given, when, then, and }) => {
+  test("Fails to register a student that doesn't have an email address", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
-    let studentRepository: StudentRepositoryStub;
+    let studentRepository: StudentRepositoryFake;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -100,7 +105,7 @@ defineFeature(feature, (test) => {
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
-    let studentRepository: StudentRepositoryStub;
+    let studentRepository: StudentRepositoryFake;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -146,7 +151,7 @@ defineFeature(feature, (test) => {
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
-    let studentRepository: StudentRepositoryStub;
+    let studentRepository: StudentRepositoryFake;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -191,7 +196,7 @@ defineFeature(feature, (test) => {
   }) => {
     let registerStudentUseCase: RegisterStudent;
     let response: unknown;
-    let studentRepository: StudentRepositoryStub;
+    let studentRepository: StudentRepositoryFake;
 
     given('a student is already registered', () => {
       studentRepository = new StudentRepositoryBuilder()

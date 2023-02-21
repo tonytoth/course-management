@@ -1,11 +1,11 @@
-import { StudentI } from '../builder/student-repo.builder';
+import { StudentTestProps } from '../builder/student-repo.builder';
 import { Student } from '../domain/student.entity';
 import { StudentRepository } from '../student.repository';
 
-export class StudentRepositoryStub implements StudentRepository {
-  students: StudentI[] | undefined;
+export class StudentRepositoryFake implements StudentRepository {
+  students: StudentTestProps[] | undefined;
 
-  addStudents(students: StudentI[]) {
+  addStudents(students: StudentTestProps[]) {
     this.students = students;
   }
 
