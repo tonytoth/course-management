@@ -5,7 +5,7 @@ import { Student } from '../../domain/student.entity';
 import { Result } from '../../domain/result';
 import { RegisterStudent } from './register-student';
 import { StudentRepositoryFake } from '../../fake/student.repository.fake';
-import { FakeEmailService } from '../../fake/email.service.fake';
+import { EmailServiceSpy } from '../../fake/email.service.spy';
 import { StudentRepositoryBuilder } from '../../builder/student-repo.builder';
 
 const feature = loadFeature(path.join(__dirname, './register-student.feature'));
@@ -22,7 +22,7 @@ defineFeature(feature, (test) => {
     let response: unknown;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
-    let emailService: FakeEmailService;
+    let emailService: EmailServiceSpy;
     let emailServiceSpy: unknown;
 
     given('a student is not registered yet', () => {
@@ -30,7 +30,7 @@ defineFeature(feature, (test) => {
         .withDefaultValues()
         .build();
 
-      emailService = new FakeEmailService();
+      emailService = new EmailServiceSpy();
 
       studentRepositorySpy = jest.spyOn(studentRepository, 'save');
       emailServiceSpy = jest.spyOn(emailService, 'sendEmail');
@@ -96,14 +96,14 @@ defineFeature(feature, (test) => {
     let studentInput: Partial<StudentInput>;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
-    let emailService: FakeEmailService;
+    let emailService: EmailServiceSpy;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
         .withDefaultValues()
         .build();
 
-      emailService = new FakeEmailService();
+      emailService = new EmailServiceSpy();
 
       registerStudentUseCase = new RegisterStudent(
         studentRepository,
@@ -153,14 +153,14 @@ defineFeature(feature, (test) => {
     let studentInput: Partial<StudentInput>;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
-    let emailService: FakeEmailService;
+    let emailService: EmailServiceSpy;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
         .withDefaultValues()
         .build();
 
-      emailService = new FakeEmailService();
+      emailService = new EmailServiceSpy();
 
       registerStudentUseCase = new RegisterStudent(
         studentRepository,
@@ -207,13 +207,13 @@ defineFeature(feature, (test) => {
     let studentInput: Partial<StudentInput>;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
-    let emailService: FakeEmailService;
+    let emailService: EmailServiceSpy;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
         .withDefaultValues()
         .build();
-      emailService = new FakeEmailService();
+      emailService = new EmailServiceSpy();
 
       registerStudentUseCase = new RegisterStudent(
         studentRepository,
@@ -259,7 +259,7 @@ defineFeature(feature, (test) => {
     let response: unknown;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
-    let emailService: FakeEmailService;
+    let emailService: EmailServiceSpy;
 
     given('a student is already registered', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -272,7 +272,7 @@ defineFeature(feature, (test) => {
         ])
         .build();
 
-      emailService = new FakeEmailService();
+      emailService = new EmailServiceSpy();
 
       registerStudentUseCase = new RegisterStudent(
         studentRepository,

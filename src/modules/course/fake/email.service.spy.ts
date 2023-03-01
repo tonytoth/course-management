@@ -1,6 +1,6 @@
 import { MailService } from '../mail.service';
 
-class FakeEmailService implements MailService {
+class EmailServiceSpy implements MailService {
   calledTimes = 0;
 
   constructor() {
@@ -16,4 +16,4 @@ class FakeEmailService implements MailService {
   }
 }
 
-export { FakeEmailService };
+export { EmailServiceSpy };
