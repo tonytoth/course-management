@@ -1,5 +1,6 @@
 import { Result } from '../../domain/result';
 import { Student } from '../../domain/student.entity';
+import { MailService } from '../../mail.service';
 import { StudentRepository } from '../../student.repository';
 
 interface StudentInput {
@@ -10,9 +11,11 @@ interface StudentInput {
 
 class RegisterStudent {
   studentRepository: StudentRepository;
+  mailService: MailService;
 
-  constructor(studentRepository: StudentRepository) {
+  constructor(studentRepository: StudentRepository, mailService: MailService) {
     this.studentRepository = studentRepository;
+    this.mailService = mailService;
   }
 
   async execute(input: Partial<StudentInput>) {
