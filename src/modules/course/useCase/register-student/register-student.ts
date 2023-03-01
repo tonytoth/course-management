@@ -45,6 +45,7 @@ class RegisterStudent {
     }
 
     await this.studentRepository.save(successfulStudent.getValue());
+    await this.mailService.sendEmail();
 
     return Result.isFine(studentResult.getValue());
   }

@@ -23,6 +23,7 @@ defineFeature(feature, (test) => {
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
     let emailService: FakeEmailService;
+    let emailServiceSpy: unknown;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -32,6 +33,7 @@ defineFeature(feature, (test) => {
       emailService = new FakeEmailService();
 
       studentRepositorySpy = jest.spyOn(studentRepository, 'save');
+      emailServiceSpy = jest.spyOn(emailService, 'sendEmail');
 
       registerStudentUseCase = new RegisterStudent(
         studentRepository,
