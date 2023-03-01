@@ -5,6 +5,7 @@ import { Student } from '../../domain/student.entity';
 import { Result } from '../../domain/result';
 import { RegisterStudent } from './register-student';
 import { StudentRepositoryFake } from '../../fake/student.repository.fake';
+import { FakeEmailService } from '../../fake/email.service.fake';
 import { StudentRepositoryBuilder } from '../../builder/student-repo.builder';
 
 const feature = loadFeature(path.join(__dirname, './register-student.feature'));
@@ -21,15 +22,21 @@ defineFeature(feature, (test) => {
     let response: unknown;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
+    let emailService: FakeEmailService;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
         .withDefaultValues()
         .build();
 
+      emailService = new FakeEmailService();
+
       studentRepositorySpy = jest.spyOn(studentRepository, 'save');
 
-      registerStudentUseCase = new RegisterStudent(studentRepository);
+      registerStudentUseCase = new RegisterStudent(
+        studentRepository,
+        emailService,
+      );
     });
 
     when('the student is trying to get registered', async () => {
@@ -87,12 +94,19 @@ defineFeature(feature, (test) => {
     let studentInput: Partial<StudentInput>;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
+    let emailService: FakeEmailService;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
         .withDefaultValues()
         .build();
-      registerStudentUseCase = new RegisterStudent(studentRepository);
+
+      emailService = new FakeEmailService();
+
+      registerStudentUseCase = new RegisterStudent(
+        studentRepository,
+        emailService,
+      );
 
       studentRepositorySpy = jest.spyOn(studentRepository, 'save');
     });
@@ -137,12 +151,19 @@ defineFeature(feature, (test) => {
     let studentInput: Partial<StudentInput>;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
+    let emailService: FakeEmailService;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
         .withDefaultValues()
         .build();
-      registerStudentUseCase = new RegisterStudent(studentRepository);
+
+      emailService = new FakeEmailService();
+
+      registerStudentUseCase = new RegisterStudent(
+        studentRepository,
+        emailService,
+      );
 
       studentRepositorySpy = jest.spyOn(studentRepository, 'save');
     });
@@ -184,12 +205,18 @@ defineFeature(feature, (test) => {
     let studentInput: Partial<StudentInput>;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
+    let emailService: FakeEmailService;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
         .withDefaultValues()
         .build();
-      registerStudentUseCase = new RegisterStudent(studentRepository);
+      emailService = new FakeEmailService();
+
+      registerStudentUseCase = new RegisterStudent(
+        studentRepository,
+        emailService,
+      );
 
       studentRepositorySpy = jest.spyOn(studentRepository, 'save');
     });
@@ -230,6 +257,7 @@ defineFeature(feature, (test) => {
     let response: unknown;
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
+    let emailService: FakeEmailService;
 
     given('a student is already registered', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -241,7 +269,13 @@ defineFeature(feature, (test) => {
           },
         ])
         .build();
-      registerStudentUseCase = new RegisterStudent(studentRepository);
+
+      emailService = new FakeEmailService();
+
+      registerStudentUseCase = new RegisterStudent(
+        studentRepository,
+        emailService,
+      );
 
       studentRepositorySpy = jest.spyOn(studentRepository, 'save');
     });
