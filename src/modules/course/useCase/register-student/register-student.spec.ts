@@ -43,6 +43,20 @@ defineFeature(feature, (test) => {
     });
 
     then('the student should be successfully registered', () => {
+      expect(emailServiceSpy).toBeCalledTimes(1);
+      expect(emailServiceSpy).toBeCalledWith({
+        from: {
+          email: 'course@management.app',
+          name: 'My Course Management',
+        },
+        to: {
+          email: 'tony@email.com',
+          name: 'Tony Toth',
+        },
+        subject: 'Welcome email',
+        text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      });
+
       expect(studentRepositorySpy).toBeCalledTimes(1);
       expect(studentRepositorySpy).toBeCalledWith(
         Student.create({
