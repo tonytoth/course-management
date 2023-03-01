@@ -20,14 +20,14 @@ defineFeature(feature, (test) => {
     let registerStudentUseCase: RegisterStudent;
     let response: unknown;
     let studentRepository: StudentRepositoryFake;
-    let saveSpy: unknown;
+    let studentRepositorySpy: unknown;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
         .withDefaultValues()
         .build();
 
-      saveSpy = jest.spyOn(studentRepository, 'save');
+      studentRepositorySpy = jest.spyOn(studentRepository, 'save');
 
       registerStudentUseCase = new RegisterStudent(studentRepository);
     });
@@ -43,8 +43,8 @@ defineFeature(feature, (test) => {
     });
 
     then('the student should be successfully registered', () => {
-      expect(saveSpy).toBeCalledTimes(1);
-      expect(saveSpy).toBeCalledWith(
+      expect(studentRepositorySpy).toBeCalledTimes(1);
+      expect(studentRepositorySpy).toBeCalledWith(
         Student.create({
           email: 'tony@email.com',
           firstName: 'Tony',
@@ -72,7 +72,7 @@ defineFeature(feature, (test) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
     let studentRepository: StudentRepositoryFake;
-    let saveSpy: unknown;
+    let studentRepositorySpy: unknown;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -80,7 +80,7 @@ defineFeature(feature, (test) => {
         .build();
       registerStudentUseCase = new RegisterStudent(studentRepository);
 
-      saveSpy = jest.spyOn(studentRepository, 'save');
+      studentRepositorySpy = jest.spyOn(studentRepository, 'save');
     });
 
     when(
@@ -99,7 +99,7 @@ defineFeature(feature, (test) => {
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
 
-        expect(saveSpy).toBeCalledTimes(0);
+        expect(studentRepositorySpy).toBeCalledTimes(0);
 
         expect(response).toEqual({
           data: null,
@@ -122,7 +122,7 @@ defineFeature(feature, (test) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
     let studentRepository: StudentRepositoryFake;
-    let saveSpy: unknown;
+    let studentRepositorySpy: unknown;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -130,7 +130,7 @@ defineFeature(feature, (test) => {
         .build();
       registerStudentUseCase = new RegisterStudent(studentRepository);
 
-      saveSpy = jest.spyOn(studentRepository, 'save');
+      studentRepositorySpy = jest.spyOn(studentRepository, 'save');
     });
 
     when('the student is trying to register without firstName', () => {
@@ -146,7 +146,7 @@ defineFeature(feature, (test) => {
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
 
-        expect(saveSpy).toBeCalledTimes(0);
+        expect(studentRepositorySpy).toBeCalledTimes(0);
 
         expect(response).toEqual({
           data: null,
@@ -169,7 +169,7 @@ defineFeature(feature, (test) => {
     let registerStudentUseCase: RegisterStudent;
     let studentInput: Partial<StudentInput>;
     let studentRepository: StudentRepositoryFake;
-    let saveSpy: unknown;
+    let studentRepositorySpy: unknown;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -177,7 +177,7 @@ defineFeature(feature, (test) => {
         .build();
       registerStudentUseCase = new RegisterStudent(studentRepository);
 
-      saveSpy = jest.spyOn(studentRepository, 'save');
+      studentRepositorySpy = jest.spyOn(studentRepository, 'save');
     });
 
     when('the student is trying to register without lastName', () => {
@@ -192,7 +192,7 @@ defineFeature(feature, (test) => {
       async () => {
         const response = await registerStudentUseCase.execute(studentInput);
 
-        expect(saveSpy).toBeCalledTimes(0);
+        expect(studentRepositorySpy).toBeCalledTimes(0);
 
         expect(response).toEqual({
           data: null,
@@ -215,7 +215,7 @@ defineFeature(feature, (test) => {
     let registerStudentUseCase: RegisterStudent;
     let response: unknown;
     let studentRepository: StudentRepositoryFake;
-    let saveSpy: unknown;
+    let studentRepositorySpy: unknown;
 
     given('a student is already registered', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -229,7 +229,7 @@ defineFeature(feature, (test) => {
         .build();
       registerStudentUseCase = new RegisterStudent(studentRepository);
 
-      saveSpy = jest.spyOn(studentRepository, 'save');
+      studentRepositorySpy = jest.spyOn(studentRepository, 'save');
     });
 
     when('the student is trying to register', async () => {
@@ -245,7 +245,7 @@ defineFeature(feature, (test) => {
     then(
       'the student should get an error that he was already registered',
       () => {
-        expect(saveSpy).toBeCalledTimes(0);
+        expect(studentRepositorySpy).toBeCalledTimes(0);
 
         expect(response).toEqual({
           data: null,
