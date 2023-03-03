@@ -23,7 +23,6 @@ defineFeature(feature, (test) => {
     let studentRepository: StudentRepositoryFake;
     let studentRepositorySpy: unknown;
     let emailService: EmailServiceSpy;
-    let emailServiceSpy: unknown;
 
     given('a student is not registered yet', () => {
       studentRepository = new StudentRepositoryBuilder()
@@ -33,7 +32,6 @@ defineFeature(feature, (test) => {
       emailService = new EmailServiceSpy();
 
       studentRepositorySpy = jest.spyOn(studentRepository, 'save');
-      emailServiceSpy = jest.spyOn(emailService, 'sendEmail');
 
       registerStudentUseCase = new RegisterStudent(
         studentRepository,
@@ -52,8 +50,8 @@ defineFeature(feature, (test) => {
     });
 
     then('the student should be successfully registered', () => {
-      expect(emailServiceSpy).toBeCalledTimes(1);
-      expect(emailServiceSpy).toBeCalledWith({
+      expect(emailService.getCalledTimes('sendEmail')).toBe(1);
+      expect(emailService.getParametersFor('sendEmail')).toBe({
         from: {
           email: 'course@management.app',
           name: 'My Course Management',
