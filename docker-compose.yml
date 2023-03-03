@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  course-app:
+    container_name: course-app
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    command: npm run test:dev
+    volumes:
+      - ./:/usr/src/app
+
+  course-database:
+    container_name: course-database
+    image: mysql:8.0.32
+    volumes:
+      - course-database-volume:/var/lib/mysql
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+
+volumes:
+  course-database-volume:

@@ -2,6 +2,10 @@
 
 > We talk about a lot of **advanced Node.js and TypeScript** concepts on [the blog](https://khalilstemmler.com), particularly focused around Domain-Driven Design and large-scale enterprise application patterns. However, I received a few emails from readers that were interested in seeing what a basic TypeScript starter project looks like. So I've put together just that.
 
+## Start the project using docker
+1. RUN ```chmod u+x start```
+2. RUN ```./start```
+
 ### Features
 
 - Minimal
