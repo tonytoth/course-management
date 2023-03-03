@@ -51,7 +51,7 @@ defineFeature(feature, (test) => {
 
     then('the student should be successfully registered', () => {
       expect(emailService.getCalledTimes('sendEmail')).toBe(1);
-      expect(emailService.getParametersFor('sendEmail')).toBe({
+      expect(emailService.getParametersFor('sendEmail')).toStrictEqual({
         from: {
           email: 'course@management.app',
           name: 'My Course Management',

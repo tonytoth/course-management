@@ -12,7 +12,7 @@ class EmailServiceSpy implements MailService {
   }
 
   getParametersFor(method: string) {
-    return this.calls.find((call) => call.method === method);
+    return this.calls.find((call) => call.method === method)?.parameters;
   }
 
   setCall(method: string, parameters: any) {

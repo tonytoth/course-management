@@ -45,7 +45,19 @@ class RegisterStudent {
     }
 
     await this.studentRepository.save(successfulStudent.getValue());
-    await this.mailService.sendEmail({});
+
+    await this.mailService.sendEmail({
+      from: {
+        email: 'course@management.app',
+        name: 'My Course Management',
+      },
+      to: {
+        email: 'tony@email.com',
+        name: 'Tony Toth',
+      },
+      subject: 'Welcome email',
+      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    });
 
     return Result.isFine(studentResult.getValue());
   }
