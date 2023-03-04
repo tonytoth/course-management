@@ -8,12 +8,17 @@ describe('Student Repository Integration Testing', () => {
   let studentRepos: StudentRepository[];
 
   beforeAll(async () => {
-    const connection = await getDatabaseConnection();
+    const databaseConnection = await getDatabaseConnection();
 
     studentRepos = [
       new StudentRepositoryFake(),
-      new TypeORMStudentRespository(connection.manager),
+      new TypeORMStudentRespository(databaseConnection.manager),
     ];
+  });
+
+  beforeEach(async () => {
+    const databaseConnection = await getDatabaseConnection();
+    await databaseConnection.synchronize(true);
   });
 
   afterAll(async () => {

@@ -1,4 +1,4 @@
-import { StudentTestProps } from '../builder/student-repo.builder';
+import { StudentTestProps } from '../builder/student-repo.fake.builder';
 import { Student } from '../domain/student.entity';
 import { StudentRepository } from './student.repository';
 
