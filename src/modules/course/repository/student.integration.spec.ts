@@ -20,7 +20,7 @@ describe('Student Repository Integration Testing', () => {
     await (await getDatabaseConnection()).destroy();
   });
 
-  it('should be able to save student entity', async () => {
+  it('should be able to save student entity and to get student by email', async () => {
     const studentExpected = Student.create({
       email: 'tony@toth.tony',
       firstName: 'Tony',
