@@ -11,6 +11,6 @@ export default class StudentEntity {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 }
