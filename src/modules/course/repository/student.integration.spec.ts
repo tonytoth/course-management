@@ -25,13 +25,21 @@ describe('Student Repository Integration Testing', () => {
       email: 'tony@toth.tony',
       firstName: 'Tony',
       lastName: 'Toth',
-    }).getValue()!;
+    }).getValue();
 
     const studentInput = Student.create({
       email: 'tony@toth.tony',
       firstName: 'Tony',
       lastName: 'Toth',
-    }).getValue()!;
+    }).getValue();
+
+    if (studentExpected === null || studentInput === null) {
+      // TODO: Here Im not sure if I have to use expect, return or I have to thown an error
+      expect(studentInput).toBeDefined();
+      expect(studentExpected).toBeDefined();
+
+      return;
+    }
 
     await Promise.all(
       studentRepos.map(async (studentRepo) => {
