@@ -1,6 +1,6 @@
 import { StudentTestProps } from '../builder/student-repo.builder';
 import { Student } from '../domain/student.entity';
-import { StudentRepository } from '../repository/student.repository';
+import { StudentRepository } from './student.repository';
 
 export class StudentRepositoryFake implements StudentRepository {
   students: StudentTestProps[] | undefined;

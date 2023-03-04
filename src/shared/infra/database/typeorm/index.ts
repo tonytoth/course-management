@@ -1,7 +1,16 @@
+import { DataSource } from 'typeorm';
 import { AppDataSource } from './config/data-source';
 
-AppDataSource.initialize()
-  .then(async () => {
-    console.log('Database initialized');
-  })
-  .catch((error) => console.log(error));
+let databaseConnection: DataSource;
+
+async function getDatabaseConnection() {
+  if (databaseConnection) {
+    return databaseConnection;
+  }
+
+  return (databaseConnection = await AppDataSource.initialize());
+}
+
+getDatabaseConnection();
+
+export { getDatabaseConnection };
