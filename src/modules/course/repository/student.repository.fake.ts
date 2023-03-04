@@ -5,6 +5,10 @@ import { StudentRepository } from './student.repository';
 export class StudentRepositoryFake implements StudentRepository {
   students: StudentTestProps[] | undefined;
 
+  constructor() {
+    this.students = [];
+  }
+
   addStudents(students: StudentTestProps[]) {
     this.students = students;
   }
