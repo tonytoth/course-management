@@ -3,7 +3,7 @@ import { Student } from '../domain/student.entity';
 import { StudentRepository } from './student.repository';
 
 export class StudentRepositoryFake implements StudentRepository {
-  students: StudentTestProps[] | undefined;
+  students: StudentTestProps[];
 
   constructor() {
     this.students = [];
@@ -26,6 +26,6 @@ export class StudentRepositoryFake implements StudentRepository {
   }
 
   async save(student: Student): Promise<void> {
-    this.students?.push(student);
+    this.students.push(student);
   }
 }
