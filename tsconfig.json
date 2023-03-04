@@ -12,6 +12,8 @@
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": "./src",
   },
   "include": ["src/**/*"],
   "exclude": ["src/**/*.spec.ts"]

@@ -1,4 +1,4 @@
-import { Student } from './domain/student.entity';
+import { Student } from '../domain/student.entity';
 
 export interface StudentRepository {
   getByEmail(email: string): Promise<Student | undefined>;
