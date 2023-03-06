@@ -4,9 +4,9 @@ import { defineFeature, loadFeature } from 'jest-cucumber';
 import { Student } from '../../domain/student.entity';
 import { Result } from '../../domain/result';
 import { RegisterStudent } from './register-student';
-import { StudentRepositoryFake } from '../../fake/student.repository.fake';
 import { EmailServiceSpy } from '../../fake/email.service.spy';
-import { StudentRepositoryBuilder } from '../../builder/student-repo.builder';
+import { StudentRepositoryFake } from '../../repository/student.repository.fake';
+import { StudentRepositoryBuilder } from '../../builder/student-repo.fake.builder';
 
 const feature = loadFeature(path.join(__dirname, './register-student.feature'));
 

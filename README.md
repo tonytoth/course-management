@@ -6,6 +6,10 @@
 1. RUN ```chmod u+x start```
 2. RUN ```./start```
 
+## Running commands in docker
+1. RUN ```chmod u+x npm```
+2. RUN ```./npm your-command```
+
 ### Features
 
 - Minimal

@@ -1,4 +1,4 @@
-import { StudentRepositoryFake } from '../fake/student.repository.fake';
+import { StudentRepositoryFake } from '../repository/student.repository.fake';
 
 export interface StudentTestProps {
   email: string;

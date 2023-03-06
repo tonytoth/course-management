@@ -1,7 +1,7 @@
 import { Result } from '../../domain/result';
 import { Student } from '../../domain/student.entity';
 import { MailService } from '../../mail.service';
-import { StudentRepository } from '../../student.repository';
+import { StudentRepository } from '../../repository/student.repository';
 
 interface StudentInput {
   email: string;
