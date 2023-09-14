@@ -1,9 +1,13 @@
-import { StudentTestProps } from '../builder/student-repo.builder';
+import { StudentTestProps } from '../builder/student-repo.fake.builder';
 import { Student } from '../domain/student.entity';
-import { StudentRepository } from '../student.repository';
+import { StudentRepository } from './student.repository';
 
 export class StudentRepositoryFake implements StudentRepository {
-  students: StudentTestProps[] | undefined;
+  students: StudentTestProps[];
+
+  constructor() {
+    this.students = [];
+  }
 
   addStudents(students: StudentTestProps[]) {
     this.students = students;
@@ -22,6 +26,6 @@ export class StudentRepositoryFake implements StudentRepository {
   }
 
   async save(student: Student): Promise<void> {
-    this.students?.push(student);
+    this.students.push(student);
   }
 }
